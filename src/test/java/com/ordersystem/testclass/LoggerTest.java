@@ -1,4 +1,4 @@
-package com.ordersystem;
+package com.ordersystem.testclass;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
