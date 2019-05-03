@@ -1,5 +1,5 @@
 //create by howard 2019.4.15.19:52
-//商品
+//商品表的映射
 package com.ordersystem.dataobject;
 
 import java.math.BigDecimal;
