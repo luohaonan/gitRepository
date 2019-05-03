@@ -25,7 +25,7 @@ public class ProductInfoDaoTest{
         productInfo.setProductPrice(new BigDecimal(8.8));
         productInfo.setProductStack(100);
         productInfo.setProductDescription("这是一份简单的小炒肉");
-        productInfo.setProductIcon("http://xxxx.jpg");
+        //productInfo.setProductIcon("http://xxxx.jpg");
         productInfo.setProductStatus(0);
         productInfo.setCategoryType(2);
 
