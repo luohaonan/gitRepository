@@ -33,6 +33,6 @@ public class OrderDTO{
     //修改时间
     private Date updateTime;
 
-    List<OrderDetail> orderDetail;
+    List<OrderDetail> orderDetailList;
 
 }
