@@ -40,6 +40,8 @@ public class OrderMaster{
     private Date createTime;
     //修改时间
     private Date updateTime;
+    //@Transient//忽略匹配数据库字段
+    //private List<OrderDetail> OrderDetailList;
     
 
 }

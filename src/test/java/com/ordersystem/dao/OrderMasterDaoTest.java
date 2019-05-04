@@ -12,6 +12,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,7 +21,7 @@ public class OrderMasterDaoTest{
     @Autowired
     private OrderMasterDao dao;
     @Test
-    @Transactional
+    @Transactional//测完回滚
     public void saveTest(){
         OrderMaster  orderMaster = new OrderMaster();
         orderMaster.setOrderId("123456");
@@ -35,6 +37,9 @@ public class OrderMasterDaoTest{
     }
     @Test
     public void findByBuyerOpenid() throws Exception{
+        PageRequest request =  PageRequest.of(0,1);//第1页 每页一个 request继承pageable接口
+        Page<OrderMaster> result = dao.findByBuyerOpenid("123456", request);
+        Assert.assertNotEquals(0,result.getTotalElements());
 
     }
 }
