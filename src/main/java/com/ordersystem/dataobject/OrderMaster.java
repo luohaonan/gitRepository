@@ -41,10 +41,10 @@ public class OrderMaster{
     //支付状态
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
     //创建时间
-    @CreationTimestamp
+    @CreationTimestamp//当在持久化实体属性上添加该注解，表明让Hibernate在保存该实体时，自动设置上创建时间，不需要用户对该属性进行管理
     private Date createTime;
     //修改时间
-    @UpdateTimestamp
+    @UpdateTimestamp////当在持久化实体属性上添加该注解，表明让Hibernate在保存该实体时，自动设置上更新时间，不需要用户对该属性进行管理
     private Date updateTime;
     //@Transient//忽略匹配数据库字段
     //private List<OrderDetail> OrderDetailList;
