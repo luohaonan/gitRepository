@@ -24,6 +24,7 @@ public class OrderServiceImplTest{
     private OrderServiceImpl orderService;
 
     private final String BUYER_OPENID = "1234567";
+    //private final String ORDER_ID = "1497183332311989948";
     @Test
     public void create() throws Exception{
         OrderDTO orderDTO = new OrderDTO();
