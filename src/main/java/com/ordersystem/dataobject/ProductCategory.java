@@ -1,5 +1,7 @@
 package com.ordersystem.dataobject;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,8 @@ public class ProductCategory{
     private Integer categoryId;
     private String categoryName;
     private Integer categoryType;
+    private Date createTime;
+    private Date updateTime;
 
     public ProductCategory(){};
 

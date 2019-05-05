@@ -3,14 +3,18 @@
 package com.ordersystem.dataobject;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Data;
 
 @Entity
 @Data
+@DynamicUpdate
 public class ProductInfo{
     @Id
     //ID为随机字符串 不需要自增
@@ -29,5 +33,7 @@ public class ProductInfo{
     private Integer productStatus;
     //类目编号
     private Integer categoryType;
+    private Date createTime;
+    private Date updateTime;
 
 }

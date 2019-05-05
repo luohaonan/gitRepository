@@ -13,6 +13,8 @@ import com.ordersystem.dataobject.OrderMaster;
 import com.ordersystem.dataobject.ProductInfo;
 import com.ordersystem.dto.CartDTO;
 import com.ordersystem.dto.OrderDTO;
+import com.ordersystem.enums.OrderStatusEnum;
+import com.ordersystem.enums.PayStatusEnum;
 import com.ordersystem.enums.ResultEnum;
 import com.ordersystem.exception.SellException;
 import com.ordersystem.service.OrderService;
@@ -40,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO create(OrderDTO orderDTO) {
         String orderId = KeyUtil.getUniqueKey();
         BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);
+        List<CartDTO> cartDTOList = new ArrayList<>();
         
         //1.查询商品（数量，价格）
         for (OrderDetail orderDetail: orderDTO.getOrderDetailList()){
@@ -48,15 +51,15 @@ public class OrderServiceImpl implements OrderService {
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
             //2.计算订单总价（每一件商品总价相加 ）
-            orderAmount = orderDetail.getProductPrice().multiply(new BigDecimal(orderDetail.getProductQuantity())).add(orderAmount);
+            orderAmount = productInfo.getProductPrice().multiply(new BigDecimal(orderDetail.getProductQuantity())).add(orderAmount);
             //3.写入订单详情
             orderDetail.setDetailId(KeyUtil.getUniqueKey());
             orderDetail.setOrderId(orderId);
             BeanUtils.copyProperties(productInfo, orderDetail);
+            
             orderDetailDao.save(orderDetail);
 
-            //库存管理
-            List<CartDTO> cartDTOList = new ArrayList<>();
+            //库存管理           
             CartDTO cartDTO = new CartDTO(orderDetail.getProductId() , orderDetail.getProductQuantity());
             cartDTOList.add(cartDTO);
             productService.decreaseStock(cartDTOList);
@@ -64,8 +67,11 @@ public class OrderServiceImpl implements OrderService {
         //4.订单详情写入订单
         OrderMaster orderMaster = new OrderMaster();
         orderMaster.setOrderId(orderId);
+        BeanUtils.copyProperties(orderDTO, orderMaster);     
         orderMaster.setOrderAmount(orderAmount);
-        BeanUtils.copyProperties(orderDTO, orderMaster);
+        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
+        orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
+        
         orderMasterDao.save(orderMaster);
 
         
