@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ordersystem.converter.OrderMaster2OrderDTOConverter;
 import com.ordersystem.dao.OrderDetailDao;
 import com.ordersystem.dao.OrderMasterDao;
 import com.ordersystem.dataobject.OrderDetail;
@@ -25,9 +26,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
@@ -39,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional//使用事务，创建订单失败抛出异常会回滚 不进行操作
+    //创建订单
     public OrderDTO create(OrderDTO orderDTO) {
         String orderId = KeyUtil.getUniqueKey();
         BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);
@@ -83,13 +87,29 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    //查询订单（Master和Detail）
     public OrderDTO findOne(String orderId) {
-        return null;
+        OrderMaster orderMaster = orderMasterDao.findById(orderId).get();
+        if(orderMaster == null){
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST);
+        }
+        List<OrderDetail> orderDetailList = orderDetailDao.findByOrderId(orderId);
+        if(CollectionUtils.isEmpty(orderDetailList)){
+            throw new SellException(ResultEnum.ORDERDETAIL_NOT_EXIST);
+            
+        }
+        OrderDTO orderDTO = new OrderDTO();
+        BeanUtils.copyProperties(orderMaster, orderDTO);
+        orderDTO.setOrderDetailList(orderDetailList);
+        return orderDTO;
     }
 
     @Override
     public Page<OrderDTO> findList(String buyerOpenId, Pageable pageable) {
-        return null;
+        Page<OrderMaster> orderMasterPage = orderMasterDao.findByBuyerOpenId(buyerOpenId, pageable);
+        //可能会查到没有订单 所以不需要判断是否返回为空
+        List<OrderDTO> orderDTOList =  OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+        return new PageImpl<OrderDTO>(orderDTOList,pageable,orderMasterPage.getTotalElements());
     }
 
     @Override

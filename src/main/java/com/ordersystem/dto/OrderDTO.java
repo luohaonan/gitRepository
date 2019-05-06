@@ -21,7 +21,7 @@ public class OrderDTO{
     //买家地址
     private String buyerAddress;
     //买家微信号
-    private String buyerOpenid;
+    private String buyerOpenId;
     //订单总金额
     private BigDecimal orderAmount;
     //订单状态,默认为新下单
