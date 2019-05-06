@@ -22,6 +22,8 @@ import com.ordersystem.service.OrderService;
 import com.ordersystem.service.ProductService;
 import com.ordersystem.utils.KeyUtil;
 
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,6 +41,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailDao orderDetailDao;
     @Autowired
     private OrderMasterDao orderMasterDao;
+
 
     @Override
     @Transactional//使用事务，创建订单失败抛出异常会回滚 不进行操作
@@ -105,6 +108,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    //查询用户名下订单
     public Page<OrderDTO> findList(String buyerOpenId, Pageable pageable) {
         Page<OrderMaster> orderMasterPage = orderMasterDao.findByBuyerOpenId(buyerOpenId, pageable);
         //可能会查到没有订单 所以不需要判断是否返回为空
@@ -113,7 +117,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
+    //取消订单
     public OrderDTO cancel(OrderDTO orderDTO) {
+        OrderMaster orderMaster = new OrderMaster();
+        //1.判断订单状态,新订单才能取消
+        if(!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())){
+            log.error("【取消订单】订单状态不正确, orderId={}, orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
+
+        }
+
         return null;
     }
 

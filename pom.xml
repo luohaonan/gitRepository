@@ -44,10 +44,6 @@
             <version>4.12</version>
             <!--<scope>test</scope>-->
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
 		<!-- Thymeleaf模板引擎 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -76,13 +72,11 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->	
-<!--	<dependency>
+    	<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.1.Final</version>
 		</dependency>
--->
-
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
 		    <groupId>org.slf4j</groupId>
