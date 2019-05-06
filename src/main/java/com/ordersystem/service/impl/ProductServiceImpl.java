@@ -45,12 +45,25 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional//使用List时应使用事务
+    //加库存
     public void increaseStock(List<CartDTO> cartDTOList) {
+        for(CartDTO cartDTO: cartDTOList){
+            //首先从购物车DTO中查询商品信息
+            ProductInfo productInfo = dao.findById(cartDTO.getProductId()).get();
+            if (productInfo == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result = productInfo.getProductStack()+cartDTO.getProductQuantity();
+            productInfo.setProductStack(result);
+            dao.save(productInfo);
+        }
 
     }
 
     @Override
     @Transactional//使用List时应使用事务
+    //减库存
     public void decreaseStock(List<CartDTO> cartDTOList) {
         //遍历购物车 寻找里面的商品信息
         for(CartDTO cartDTO: cartDTOList){
