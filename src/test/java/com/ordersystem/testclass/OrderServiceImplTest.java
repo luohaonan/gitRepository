@@ -4,8 +4,12 @@ package com.ordersystem.testclass;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.ordersystem.dataobject.OrderDetail;
 import com.ordersystem.dto.OrderDTO;
+import com.ordersystem.enums.OrderStatusEnum;
+import com.ordersystem.enums.PayStatusEnum;
 import com.ordersystem.service.impl.OrderServiceImpl;
 
 import org.junit.Assert;
@@ -17,6 +21,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
 import lombok.extern.slf4j.Slf4j;
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,7 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderServiceImplTest{
     @Autowired
     private OrderServiceImpl orderService;
-
     private final String BUYER_OPENID = "1234567";
     private final String ORDER_ID = "1557067494719664246";
     @Test
@@ -66,12 +70,25 @@ public class OrderServiceImplTest{
 
     }
     @Test
+    @Transactional
     public void cancel() throws Exception{
-
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
     }
     @Test
+    @Transactional
     public void finish() throws Exception{
-
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
+    }
+    @Test
+    @Transactional
+    public void pay() throws Exception {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.pay(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
     }
 
 }
