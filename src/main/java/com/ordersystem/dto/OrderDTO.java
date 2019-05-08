@@ -6,11 +6,16 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ordersystem.dataobject.OrderDetail;
+import com.ordersystem.utils.serializer.Date2LongSerializer;
+
 
 import lombok.Data;
 
 @Data
+//如果传输的JSON数据中有对象为空，忽略此对象
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO{
     //订单ID
     private String orderId;
@@ -29,8 +34,11 @@ public class OrderDTO{
     //支付状态
     private Integer payStatus;
     //创建时间
+    //时间戳的转换
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
     //修改时间
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;

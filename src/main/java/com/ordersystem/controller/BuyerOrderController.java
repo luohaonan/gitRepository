@@ -12,6 +12,7 @@ import com.ordersystem.dto.OrderDTO;
 import com.ordersystem.enums.ResultEnum;
 import com.ordersystem.exception.SellException;
 import com.ordersystem.form.OrderForm;
+import com.ordersystem.service.BuyerService;
 import com.ordersystem.service.OrderService;
 import com.ordersystem.utils.ResultVOUtil;
 import com.ordersystem.vo.ResultVO;
@@ -36,6 +37,8 @@ import lombok.extern.slf4j.Slf4j;
 public class BuyerOrderController{
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private BuyerService buyerService;
     //创建订单
     //@Valid是使用hibernate validation的时候使用
     //@Valid和BindingResult bindingResult是配对出现，并且形参顺序是固定的（一前一后）。
@@ -75,7 +78,22 @@ public class BuyerOrderController{
         return ResultVOUtil.success(orderDTOPage.getContent());
     }
     //订单详情
+    //直接调用orderService 则不安全 传入订单号即可访问数据 所以使用添加BuyerService
+    @GetMapping("/detail")
+    @SuppressWarnings("unchecked")
+    public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
+                                     @RequestParam("orderId") String orderId) {
+        OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
+        return ResultVOUtil.success(orderDTO);
+    }
     //取消订单
+    @SuppressWarnings("rawtypes")
+    @PostMapping("/cancel")
+    public ResultVO cancel(@RequestParam("openid") String openid,
+                           @RequestParam("orderId") String orderId) {
+        buyerService.cancelOrder(openid, orderId);
+        return ResultVOUtil.success();
+    }
 
 
 }
