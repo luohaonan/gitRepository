@@ -28,7 +28,7 @@ public class OrderMasterDaoTest{
         orderMaster.setBuyerName("howard");
         orderMaster.setBuyerPhone("18983654537");
         orderMaster.setBuyerAddress("重庆邮电大学");
-        orderMaster.setBuyerOpenId("123456");
+        orderMaster.setBuyerOpenid("123456");
         orderMaster.setOrderAmount(new BigDecimal(8.8));
 
         OrderMaster result =  dao.save(orderMaster);
@@ -36,9 +36,9 @@ public class OrderMasterDaoTest{
 
     }
     @Test
-    public void findByBuyerOpenId() throws Exception{
+    public void findByBuyerOpenid() throws Exception{
         PageRequest request =  PageRequest.of(0,1);//第1页 每页一个 request继承pageable接口
-        Page<OrderMaster> result = dao.findByBuyerOpenId("123456", request);
+        Page<OrderMaster> result = dao.findByBuyerOpenid("123456", request);
         Assert.assertNotEquals(0,result.getTotalElements());
 
     }

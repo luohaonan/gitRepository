@@ -22,7 +22,7 @@ public class OrderForm2OrderDTOConverter{
     orderDTO.setBuyerName(orderForm.getName());
     orderDTO.setBuyerPhone(orderForm.getPhone());
     orderDTO.setBuyerAddress(orderForm.getAddress());
-    orderDTO.setBuyerOpenId(orderForm.getOpenId());
+    orderDTO.setBuyerOpenid(orderForm.getOpenid());
     //将JSON格式的内容转化为OrderDetailList
     List<OrderDetail> orderDetailList = new ArrayList<>();
     try {

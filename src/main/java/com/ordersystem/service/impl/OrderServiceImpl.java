@@ -107,8 +107,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     //查询用户名下订单
-    public Page<OrderDTO> findList(String buyerOpenId, Pageable pageable) {
-        Page<OrderMaster> orderMasterPage = orderMasterDao.findByBuyerOpenId(buyerOpenId, pageable);
+    public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterDao.findByBuyerOpenid(buyerOpenid, pageable);
         //可能会查到没有订单 所以不需要判断是否返回为空
         List<OrderDTO> orderDTOList =  OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
         return new PageImpl<OrderDTO>(orderDTOList,pageable,orderMasterPage.getTotalElements());

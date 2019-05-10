@@ -18,8 +18,8 @@ public class OrderForm{
     @NotEmpty(message = "地址必填")
     private String address;
     //买家微信OPENID
-    @NotEmpty(message = "openId必填")
-    private String openId;
+    @NotEmpty(message = "openid必填")
+    private String openid;
     //购物车
     @NotEmpty(message = "购物车不能为空")
     private String items;
