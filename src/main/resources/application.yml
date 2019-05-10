@@ -14,3 +14,7 @@ spring:
   jackson:
   #如果传输的JSON数据中有对象(如果必须返回 ，则初始化一个值值为空)为空，忽略此对象
     default-property-inclusion: non-null
+
+wechat:
+  mpAppid:
+  mpAppSecret:

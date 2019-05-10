@@ -87,6 +87,12 @@
 		    <groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
+		<!--微信开发SDK-->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-mp</artifactId>
+			<version>2.7.0</version>
+		</dependency>
   </dependencies>
   <build>
     <finalName>ordersystem</finalName>
