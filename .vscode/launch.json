@@ -13,10 +13,10 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-SellApplication<ordersystem>",
+            "name": "Debug (Launch)-SellApplication<sell>",
             "request": "launch",
-            "mainClass": "com.ordersystem.SellApplication",
-            "projectName": "ordersystem"
+            "mainClass": "com.sell.SellApplication",
+            "projectName": "sell"
         }
     ]
 }

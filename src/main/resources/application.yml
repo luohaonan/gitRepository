@@ -6,19 +6,20 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #存疑 虚拟机OR本地地址
-    url: jdbc:mysql://localhost:3306/ordering_system?serverTimezone=GMT%2B8&amp&useSSL=false
+    url: jdbc:mysql://192.168.1.120/ordering_system?serverTimezone=GMT%2B8&amp&useSSL=false
+
     username: root
-    password: 
+    password: 123456
   jpa:
     show-sql: true
   jackson:
   #如果传输的JSON数据中有对象(如果必须返回 ，则初始化一个值值为空)为空，忽略此对象
     default-property-inclusion: non-null
     
-wechat:
-  mpAppid:
-  mpAppSecret:
-projectUrl:
-  wechatMpAuthorize: http://sell.natapp4.cc
-  wechatOpenAuthorize: http://sell.natapp4.cc
-  sell: http://sell.natapp4.cc
+#wechat:
+  #mpAppid:
+  #mpAppSecret:
+#projectUrl:
+  #wechatMpAuthorize:http://sell.natapp4.cc
+  #wechatOpenAuthorize:http://sell.natapp4.cc
+  #sell:http://sell.natapp4.cc

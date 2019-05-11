@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ordersystem.iml" filepath="$PROJECT_DIR$/ordersystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gitRepository-master.iml" filepath="$PROJECT_DIR$/.idea/gitRepository-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sell.iml" filepath="$PROJECT_DIR$/sell.iml" />
     </modules>
   </component>
 </project>

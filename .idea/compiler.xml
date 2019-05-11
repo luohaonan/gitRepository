@@ -6,16 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ordersystem" />
+        <module name="gitRepository-master" />
+        <module name="sell" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ordersystem" target="1.8" />
+      <module name="gitRepository-master" target="1.8" />
+      <module name="sell" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ordersystem" options="-parameters" />
+      <module name="gitRepository-master" options="-parameters" />
+      <module name="sell" options="-parameters" />
     </option>
   </component>
 </project>
