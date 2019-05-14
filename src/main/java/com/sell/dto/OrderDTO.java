@@ -6,8 +6,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.sell.dataobject.OrderDetail;
+import com.sell.enums.OrderStatusEnum;
+import com.sell.enums.PayStatusEnum;
+import com.sell.utils.EnumUtil;
 import com.sell.utils.serializer.Date2LongSerializer;
 
 
@@ -42,5 +46,15 @@ public class OrderDTO{
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 
 }
