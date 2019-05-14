@@ -8,6 +8,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sell.enums.ProductStatusEnum;
+import com.sell.utils.EnumUtil;
+
 import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Data;
@@ -15,6 +19,7 @@ import lombok.Data;
 @Entity
 @Data
 @DynamicUpdate
+
 public class ProductInfo{
     @Id
     //ID为随机字符串 不需要自增
@@ -33,7 +38,15 @@ public class ProductInfo{
     private Integer productStatus;
     //类目编号
     private Integer categoryType;
+    //创建时间
     private Date createTime;
+    //更新时间
     private Date updateTime;
+
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum(){
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
+
 
 }

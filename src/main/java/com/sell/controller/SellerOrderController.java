@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/seller/order")
 @Slf4j
-public class SellOrderController{
+public class SellerOrderController{
     @Autowired
     private OrderService orderService;
 
@@ -71,6 +71,7 @@ public class SellOrderController{
     public ModelAndView detail(@RequestParam("orderId") String orderId,
                                Map<String, Object> map) {
         OrderDTO orderDTO = new OrderDTO();
+        //查询订单（包含了详情）
         try {
             orderDTO = orderService.findOne(orderId);
         }catch (SellException e) {
@@ -79,7 +80,7 @@ public class SellOrderController{
             map.put("url", "/sell/seller/order/list");
             return new ModelAndView("common/error", map);
         }
-
+        //返回详情页面
         map.put("orderDTO", orderDTO);
         return new ModelAndView("order/detail", map);
     }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ProductService{
+    //查询商品
     ProductInfo findOne(String productId);
     //查询所有商品
     List<ProductInfo> findUpAll();
@@ -21,4 +22,8 @@ public interface ProductService{
     void increaseStock(List<CartDTO> cartDTOList);
     //减库存
     void decreaseStock(List<CartDTO> cartDTOList);
+    //上架
+    ProductInfo onSale(String productId);
+    //下架
+    ProductInfo offSale(String productId);
 }
