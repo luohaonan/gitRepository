@@ -1,8 +1,10 @@
 //create by howard in 20190512
+/*
 package com.sell.controller;
 
 import java.util.Map;
 
+import com.lly835.bestpay.model.PayResponse;
 import com.sell.dto.OrderDTO;
 import com.sell.enums.ResultEnum;
 import com.sell.exception.SellException;
@@ -47,10 +49,8 @@ public class PayController {
         return new ModelAndView("pay/create", map);
     }
 
-    /**
-     * 微信异步通知
-     * @param notifyData
-     */
+    //微信异步通知
+
     @PostMapping("/notify")
     public ModelAndView notify(@RequestBody String notifyData) {
         payService.notify(notifyData);
@@ -59,3 +59,4 @@ public class PayController {
         return new ModelAndView("pay/success");
     }
 }
+*/

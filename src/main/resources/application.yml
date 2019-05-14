@@ -5,11 +5,12 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #存疑 虚拟机OR本地地址
-    url: jdbc:mysql://192.168.1.120/ordering_system?serverTimezone=GMT%2B8&amp&useSSL=false
+    # 虚拟机OR本地地址
+    #url: jdbc:mysql://192.168.1.120/ordering_system?serverTimezone=GMT%2B8&amp&useSSL=false
+    url: jdbc:mysql://localhost/ordering_system?serverTimezone=GMT%2B8&amp&useSSL=false
 
     username: root
-    password: 123456
+    password: 
   jpa:
     show-sql: true
   jackson:
