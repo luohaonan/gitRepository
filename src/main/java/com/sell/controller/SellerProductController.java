@@ -97,6 +97,7 @@ public class SellerProductController {
         return new ModelAndView("common/success", map);
     }
 
+    //商品新增和修改
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value = "productId", required = false) String productId,
                       Map<String, Object> map) {

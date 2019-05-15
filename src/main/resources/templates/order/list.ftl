@@ -81,7 +81,7 @@
 </div>
 
 <#--弹窗-->
-<!-->
+<#-->
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -103,14 +103,17 @@
 </div>
 <-->
 
-<#--播放音乐-->
+<#--音乐提示-->
+<#-->
 <audio id="notice" loop="loop">
     <source src="/sell/mp3/song.mp3" type="audio/mpeg" />
 </audio>
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!-->
+<-->
+
+<#-->
 <script>
     var websocket = null;
     if('WebSocket' in window) {

@@ -1,4 +1,6 @@
 //create by howard in20190515
+//卖家管理产品用到的数据格式
+//不需要上架状态
 package com.sell.form;
 
 import java.math.BigDecimal;
