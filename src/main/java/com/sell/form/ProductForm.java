@@ -20,7 +20,7 @@ public class ProductForm {
     private BigDecimal productPrice;
 
     /** 库存. */
-    private Integer productStock;
+    private Integer productStack;
 
     /** 描述. */
     private String productDescription;

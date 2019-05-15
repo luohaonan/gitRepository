@@ -67,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
             //库存管理           
             //CartDTO cartDTO = new CartDTO(orderDetail.getProductId() , orderDetail.getProductQuantity());
             //cartDTOList.add(cartDTO);
-            //productService.decreaseStock(cartDTOList);
+            //productService.decreaseStack(cartDTOList);
         }
         //4.写入订单数据库
         OrderMaster orderMaster = new OrderMaster();       
@@ -81,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
         List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream().map(e ->
                 new CartDTO(e.getProductId(), e.getProductQuantity())
         ).collect(Collectors.toList());
-        productService.decreaseStock(cartDTOList);
+        productService.decreaseStack(cartDTOList);
 
         
         return orderDTO;
@@ -142,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
                 .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         //加库存
-        productService.increaseStock(cartDTOList);
+        productService.increaseStack(cartDTOList);
         //如果支付，需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
         //    payService.refund(orderDTO);

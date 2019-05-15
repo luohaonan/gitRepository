@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional//使用List时应使用事务
     //加库存
-    public void increaseStock(List<CartDTO> cartDTOList) {
+    public void increaseStack(List<CartDTO> cartDTOList) {
         for(CartDTO cartDTO: cartDTOList){
             //首先从购物车DTO中查询商品信息
             ProductInfo productInfo = dao.findById(cartDTO.getProductId()).get();
@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional//使用List时应使用事务
     //减库存
-    public void decreaseStock(List<CartDTO> cartDTOList) {
+    public void decreaseStack(List<CartDTO> cartDTOList) {
         //遍历购物车 寻找里面的商品信息
         for(CartDTO cartDTO: cartDTOList){
             ProductInfo productInfo = dao.findById(cartDTO.getProductId()).get();
@@ -73,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
             }
             Integer result = productInfo.getProductStack() - cartDTO.getProductQuantity();
             if(result<0){
-                throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
+                throw new SellException(ResultEnum.PRODUCT_STACK_ERROR);
             }
             productInfo.setProductStack(result);
             dao.save(productInfo);

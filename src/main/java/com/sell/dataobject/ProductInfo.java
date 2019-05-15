@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sell.enums.ProductStatusEnum;
 import com.sell.utils.EnumUtil;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Data;
@@ -39,8 +40,10 @@ public class ProductInfo{
     //类目编号
     private Integer categoryType;
     //创建时间
+    @CreationTimestamp//当在持久化实体属性上添加该注解，表明让Hibernate在保存该实体时，自动设置上创建时间，不需要用户对该属性进行管理
     private Date createTime;
     //更新时间
+    @CreationTimestamp//当在持久化实体属性上添加该注解，表明让Hibernate在保存该实体时，自动设置上创建时间，不需要用户对该属性进行管理
     private Date updateTime;
 
     @JsonIgnore

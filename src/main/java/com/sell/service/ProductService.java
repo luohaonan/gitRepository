@@ -19,9 +19,9 @@ public interface ProductService{
     //储存
     ProductInfo save(ProductInfo productInfo);
     //加库存
-    void increaseStock(List<CartDTO> cartDTOList);
+    void increaseStack(List<CartDTO> cartDTOList);
     //减库存
-    void decreaseStock(List<CartDTO> cartDTOList);
+    void decreaseStack(List<CartDTO> cartDTOList);
     //上架
     ProductInfo onSale(String productId);
     //下架

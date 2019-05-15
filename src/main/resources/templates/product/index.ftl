@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label>库存</label>
-                            <input name="productStock" type="number" class="form-control" value="${(productInfo.productStock)!''}"/>
+                            <input name="productStack" type="number" class="form-control" value="${(productInfo.productStack)!''}"/>
                         </div>
                         <div class="form-group">
                             <label>描述</label>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label>图片</label>
-                            <img height="100" width="100" src="${(productInfo.productIcon)!''}" alt="">
+                            <img height="100" width="100" src="${(productInfo.productIcon)!'https://cn.bing.com/th?id=OIP.7JqlFZ1nDJCWrOoYxlSC9gHaH9&pid=Api&rs=1&p=0'}" alt="">
                             <input name="productIcon" type="text" class="form-control" value="${(productInfo.productIcon)!''}"/>
                         </div>
                         <div class="form-group">
