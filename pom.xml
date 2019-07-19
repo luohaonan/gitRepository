@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cqupt.luohaonan</groupId>
-  <artifactId>ordersystem</artifactId>
+  <artifactId>sell</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>ordersystem Maven Webapp</name>
+  <name>sell Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -44,10 +44,6 @@
             <version>4.12</version>
             <!--<scope>test</scope>-->
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
 		<!-- Thymeleaf模板引擎 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -76,22 +72,41 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->	
-<!--	<dependency>
+    	<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.1.Final</version>
 		</dependency>
--->
-
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-api</artifactId>
 		    <version>1.7.25</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<!--微信开发SDK-->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-mp</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<!--微信支付SDK-->
+		<dependency>
+			<groupId>cn.springboot</groupId>
+			<artifactId>best-pay-sdk</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<!--微信支付过程中使用的动态模板-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
   </dependencies>
   <build>
-    <finalName>ordersystem</finalName>
+    <finalName>sell</finalName>
      <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
